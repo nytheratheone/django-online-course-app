@@ -2,14 +2,14 @@ from django.contrib import admin
 from .models import Course, Lesson, Instructor, Learner, Question, Choice, Submission
 
 
-class QuestionInline(admin.StackedInline):
-    model = Question
-    extra = 5
-
-
 class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 4
+
+
+class QuestionInline(admin.StackedInline):
+    model = Question
+    extra = 5
 
 
 class LessonsInline(admin.StackedInline):
@@ -22,11 +22,11 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class LessonAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
+    pass
 
 
 class CourseAdmin(admin.ModelAdmin):
-    inlines = [LessonsInline]
+    inlines = [LessonsInline, QuestionInline]
 
 
 admin.site.register(Course, CourseAdmin)
